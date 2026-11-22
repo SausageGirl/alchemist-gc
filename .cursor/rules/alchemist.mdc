@@ -1,0 +1,17 @@
+---
+description: Alchemist package layout and where new code goes
+alwaysApply: true
+---
+
+# Alchemist
+
+Follow `AGENTS.md` before changing this repo.
+
+- Package is `alchemist/`. Run with `python -m alchemist`. Do not add scripts at the repo root.
+- Game flow goes in `alchemist/tasks/`. A task takes a `Bot` and uses `bot.step`, `bot.visible`, `bot.log`. It does not call pyautogui, cv2, or `vision.find`.
+- Screen matching stays in `vision.py`. Clicks stay in `input.py`. Windows admin and DPI stay in `platform.py`.
+- Edit gather/craft lists in `schedules.py`. Edit thresholds and paths in `settings.py`.
+- Template name `gather/mushroom` maps to `templates/gather/mushroom.png`.
+- On a failed step, raise `StepFailed(message, name)` with the template name.
+- Pass `Settings` into `Bot`. Do not bring back module-level threshold or delay globals.
+- Keep DPI awareness before any `pyautogui` import. Keep held clicks in `input.click_at`.
