@@ -8,7 +8,7 @@ Edit the lists here. Item names must match a template image:
 # (items added in one round, how many rounds in a row)
 GATHER_SCHEDULE: list[tuple[list[str], int]] = [
     (["mushroom", "vine"], 2),
-    (["calcite", "sand"], 2),
+    (["calcite", "sand"], 1),
     (["thistle", "pepper", "silica"], 1),
 ]
 
