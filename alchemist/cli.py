@@ -46,6 +46,7 @@ MENU = """
   3) Loop: Gathering -> Crafting -> repeat
   4) Loop: Crafting -> Gathering -> repeat
   5) Check templates (no clicking)
+  6) Capture a template (drag a box)
   q) Quit
 """
 
@@ -70,11 +71,20 @@ def run_menu() -> None:
             gather.check(bot)
             print("\n-- crafting --")
             craft.check(bot)
+        elif choice == "6":
+            name = input("Template name (e.g. gather/mushroom): ").strip()
+            if not name:
+                print("No name given, nothing saved.")
+                continue
+            try:
+                capture.run(name, delay=3)
+            except SystemExit as exc:
+                print(exc)
         elif choice in TASKS:
             title, task = TASKS[choice]
             bot.run_task(title, lambda task=task: task(bot))
         else:
-            print("Type 1, 2, 3, 4, 5 or q.")
+            print("Type 1, 2, 3, 4, 5, 6 or q.")
 
 
 def _add_common(parser: argparse.ArgumentParser) -> None:
